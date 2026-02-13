@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXA | THE NEW STANDARD</title>
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --line: #e5e5e5;
+            --faint: #767676;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .wrapper {
+            width: 100%;
+            max-width: 500px;
+            padding: 80px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            margin-bottom: 80px;
+        }
+
+        .nexa-logo {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 6px;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 38px;
+            font-weight: 300;
+            line-height: 1.05;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: var(--faint);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Zara Style Bento Grid */
+        .brand-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px; /* Creates thin line effect */
+            background-color: var(--line); /* Line color */
+            border: 1px solid var(--line);
+        }
+
+        .brand-item {
+            background-color: var(--bg);
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: background 0.3s ease;
+        }
+
+        .brand-item:hover {
+            background-color: #fcfcfc;
+            text-decoration: underline;
+        }
+
+        .brand-item.full {
+            grid-column: span 2;
+            height: 140px;
+        }
+
+        .brand-label {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding-top: 60px;
+            text-align: left;
+        }
+
+        .instruction {
+            font-size: 10px;
+            color: var(--faint);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 2;
+        }
+
+        /* Removing rounded corners for that sharp Zara look */
+        button, a { border-radius: 0 !important; }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <div class="nexa-logo">NEXA</div>
+            <h1>The wardrobe<br>is ready.</h1>
+            <p class="subtitle">Select a destination to begin.</p>
+        </header>
+
+        <div class="brand-container">
+            <a href="https://www.zara.com/in/" target="_blank" class="brand-item full">
+                <span class="brand-label">ZARA</span>
+            </a>
+            <a href="https://www.myntra.com" target="_blank" class="brand-item">
+                <span class="brand-label">MYNTRA</span>
+            </a>
+            <a href="https://www.hm.com" target="_blank" class="brand-item">
+                <span class="brand-label">H&M</span>
+            </a>
+            <a href="https://www.amazon.in" target="_blank" class="brand-item">
+                <span class="brand-label">AMAZON</span>
+            </a>
+            <a href="https://www.ajio.com" target="_blank" class="brand-item">
+                <span class="brand-label">AJIO</span>
+            </a>
+        </div>
+
+        <footer>
+            <p class="instruction">
+                Integration active / <br>
+                Pin extension for persistent access
+            </p>
+        </footer>
+    </div>
+
+</body>
+</html>
