@@ -1,34 +1,48 @@
 /**
  * NEXA · AI Fit Engine (Background Service Worker)
- * Lifecycle Management & Onboarding Trigger
- * Version: 1.0.0
+ * High-Performance Onboarding & State Management
  */
 
+// 1. Installation & Update Logic
 chrome.runtime.onInstalled.addListener((details) => {
     if (details.reason === "install") {
-        // 1. Launch the Global Onboarding Hub
-        chrome.tabs.create({ 
-            url: "welcome.html",
-            active: true 
+        // First time install - Open Welcome Page
+        chrome.tabs.create({
+            url: chrome.runtime.getURL("welcome.html")
         });
 
-        // 2. Initialize Core Storage (Safety Check)
+        // Initialize Local Storage Defaults
         chrome.storage.local.set({ 
             installDate: new Date().toISOString(),
-            setupDone: false 
+            isInstalled: true,
+            userProfile: null // Placeholder for future height/weight data
         });
-
-        console.log("NEXA 🚀: Global Hub Launched. Engine Primed.");
+        
+        console.log("NEXA 🚀: First Launch Successful.");
+    } 
+    else if (details.reason === "update") {
+        console.log("NEXA 🚀: Engine Updated to latest version.");
     }
 });
 
-// Listener to keep the service worker alive during active sessions
-chrome.runtime.onStartup.addListener(() => {
-    console.log("NEXA 🚀: Universal Fit Engine Active.");
+// 2. Developer & Persistence Trigger
+// Ensures the welcome page triggers even if installation event was missed during reload
+chrome.storage.local.get(["isInstalled"], (res) => {
+    if (!res.isInstalled) {
+        chrome.tabs.create({
+            url: chrome.runtime.getURL("welcome.html")
+        });
+        chrome.storage.local.set({ isInstalled: true });
+    }
 });
 
-/**
- * Startup Tip: 
- * We kept the UI clean (no badges) to maintain a premium, 
- * non-intrusive experience on the user's toolbar.
- */
+// 3. Message Listener (Future-Proofing)
+// Content scripts ya Popup se aane wale data ke liye framework
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    if (request.action === "ping") {
+        sendResponse({ status: "NEXA Active" });
+    }
+    return true; // Keeps the message channel open for async responses
+});
+
+console.log("NEXA 🚀: Service Worker Registered.");

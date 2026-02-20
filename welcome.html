@@ -15,7 +15,7 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: "Helvetica Now", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text);
             display: flex;
@@ -26,80 +26,114 @@
 
         .wrapper {
             width: 100%;
-            max-width: 500px;
-            padding: 80px 24px;
+            max-width: 600px;
+            padding: 60px 24px;
             display: flex;
             flex-direction: column;
         }
 
-        header {
-            margin-bottom: 80px;
-        }
+        header { margin-bottom: 60px; }
 
         .nexa-logo {
             font-size: 14px;
             font-weight: 700;
-            letter-spacing: 6px;
-            margin-bottom: 40px;
+            letter-spacing: 8px;
+            margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 38px;
+            font-size: 42px;
             font-weight: 300;
-            line-height: 1.05;
+            line-height: 1;
             letter-spacing: -0.04em;
             text-transform: uppercase;
             margin-bottom: 12px;
         }
 
         .subtitle {
-            font-size: 13px;
+            font-size: 12px;
             color: var(--faint);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
         }
 
-        /* Zara Style Bento Grid */
+        .how-it-works {
+            margin-bottom: 60px;
+            border-top: 1px solid var(--line);
+            padding-top: 40px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid var(--text);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-text h3 {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 6px;
+        }
+
+        .step-text p {
+            font-size: 14px;
+            color: var(--faint);
+            line-height: 1.5;
+        }
+
+        /* --- BRAND GRID (BENTO FIX) --- */
         .brand-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1px; /* Creates thin line effect */
-            background-color: var(--line); /* Line color */
+            gap: 1px;
+            background-color: var(--line);
             border: 1px solid var(--line);
         }
 
         .brand-item {
             background-color: var(--bg);
-            height: 160px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
             color: var(--text);
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        /* Zara ko full width dene ke liye */
+        .brand-item.featured {
+            grid-column: span 2;
         }
 
         .brand-item:hover {
-            background-color: #fcfcfc;
-            text-decoration: underline;
-        }
-
-        .brand-item.full {
-            grid-column: span 2;
-            height: 140px;
+            background-color: #000;
+            color: #fff;
         }
 
         .brand-label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
         }
 
         footer {
-            margin-top: auto;
-            padding-top: 60px;
-            text-align: left;
+            margin-top: 60px;
+            padding-bottom: 40px;
         }
 
         .instruction {
@@ -110,9 +144,7 @@
             line-height: 2;
         }
 
-        /* Removing rounded corners for that sharp Zara look */
-        button, a { border-radius: 0 !important; }
-
+        * { border-radius: 0 !important; }
     </style>
 </head>
 <body>
@@ -121,21 +153,38 @@
         <header>
             <div class="nexa-logo">NEXA</div>
             <h1>The wardrobe<br>is ready.</h1>
-            <p class="subtitle">Select a destination to begin.</p>
+            <p class="subtitle">Your size engine is active.</p>
         </header>
 
+        <section class="how-it-works">
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-text">
+                    <h3>Configure Profile</h3>
+                    <p>Open the extension from your toolbar to set your metrics. This calibrates your personal fit engine.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-text">
+                    <h3>Explore Brands</h3>
+                    <p>Visit any supported store. NEXA will automatically overlay your recommended size on the product page.</p>
+                </div>
+            </div>
+        </section>
+
         <div class="brand-container">
-            <a href="https://www.zara.com/in/" target="_blank" class="brand-item full">
+            <a href="https://www.zara.com" target="_blank" class="brand-item featured">
                 <span class="brand-label">ZARA</span>
+            </a>
+            <a href="https://www.amazon.in" target="_blank" class="brand-item">
+                <span class="brand-label">AMAZON</span>
             </a>
             <a href="https://www.myntra.com" target="_blank" class="brand-item">
                 <span class="brand-label">MYNTRA</span>
             </a>
             <a href="https://www.hm.com" target="_blank" class="brand-item">
                 <span class="brand-label">H&M</span>
-            </a>
-            <a href="https://www.amazon.in" target="_blank" class="brand-item">
-                <span class="brand-label">AMAZON</span>
             </a>
             <a href="https://www.ajio.com" target="_blank" class="brand-item">
                 <span class="brand-label">AJIO</span>
@@ -144,8 +193,8 @@
 
         <footer>
             <p class="instruction">
-                Integration active / <br>
-                Pin extension for persistent access
+                ESTABLISHED 2024 / <br>
+                PIN EXTENSION FOR THE BEST EXPERIENCE
             </p>
         </footer>
     </div>

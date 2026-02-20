@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <style>
         body { 
-            width: 300px; 
+            width: 320px; 
             padding: 24px; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             background: #ffffff; 
             color: #1a1a1a; 
             margin: 0;
@@ -14,105 +14,111 @@
         }
         
         .header { 
-            font-size: 11px; 
-            letter-spacing: 5px; 
-            font-weight: 800; 
+            font-size: 10px; 
+            letter-spacing: 6px; 
+            font-weight: 900; 
             margin-bottom: 30px; 
             text-align: center;
             color: #000;
+            opacity: 0.8;
         }
         
-        .input-group { margin-bottom: 18px; }
+        .input-group { margin-bottom: 20px; }
         
         label { 
             font-size: 9px; 
             text-transform: uppercase; 
-            color: #a1a1a1; 
+            color: #999; 
             display: block; 
-            margin-bottom: 6px; 
-            letter-spacing: 0.5px;
-            font-weight: 600;
+            margin-bottom: 8px; 
+            letter-spacing: 1px;
+            font-weight: 700;
         }
         
         input { 
             width: 100%; 
             border: none; 
-            border-bottom: 1.5px solid #f0f0f0; 
-            padding: 10px 0; 
-            font-size: 15px; 
+            border-bottom: 1.5px solid #ececec; 
+            padding: 12px 0; 
+            font-size: 16px; 
             outline: none; 
-            transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 500;
+            transition: all 0.3s ease;
+            font-weight: 600;
             background: transparent;
+            color: #000;
         }
         
         input:focus { border-bottom: 1.5px solid #000; }
+        input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
         .result-zone { 
-            margin-top: 30px; 
-            padding-top: 25px; 
-            border-top: 1px solid #f5f5f5;
-            animation: fadeIn 0.5s ease-out;
+            margin-top: 25px; 
+            padding: 20px 0; 
+            border-top: 1px solid #f0f0f0;
+            animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .status-row { 
             display: flex; 
             justify-content: space-between; 
             align-items: center;
-            margin-bottom: 14px; 
+            margin-bottom: 12px; 
         }
         
-        .status-label { font-size: 12px; font-weight: 500; }
-        .tag { font-weight: 700; font-size: 14px; letter-spacing: -0.5px; }
+        .status-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag { font-weight: 800; font-size: 15px; }
         
         .save-btn { 
             width: 100%; 
             background: #000; 
             color: #fff; 
             border: none; 
-            padding: 14px; 
-            font-weight: 700; 
+            padding: 16px; 
+            font-weight: 800; 
             cursor: pointer; 
-            margin-top: 10px;
+            margin-top: 5px;
             text-transform: uppercase; 
             letter-spacing: 2px; 
-            font-size: 10px;
-            transition: opacity 0.2s;
+            font-size: 11px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
         }
 
-        .save-btn:active { opacity: 0.8; }
+        .save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .save-btn:active { transform: translateY(0); }
 
         .footer-note { 
             font-size: 8px; 
-            color: #d1d1d1; 
-            margin-top: 25px; 
+            color: #ccc; 
+            margin-top: 30px; 
             text-align: center;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
+            font-weight: 500;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <div class="header">NEXA</div>
+    <div class="header">NEXA · ENGINE</div>
     
     <div class="input-group">
         <label>Height (cm)</label>
-        <input type="number" id="h" placeholder="000" inputmode="numeric">
+        <input type="number" id="h" placeholder="e.g. 175" inputmode="numeric">
     </div>
 
-    <div style="display: flex; gap: 20px;">
+    <div style="display: flex; gap: 24px;">
         <div class="input-group" style="flex: 1;">
             <label>Weight (kg)</label>
-            <input type="number" id="w" placeholder="00" inputmode="numeric">
+            <input type="number" id="w" placeholder="70" inputmode="numeric">
         </div>
         <div class="input-group" style="flex: 1;">
             <label>Chest (in)</label>
-            <input type="number" id="c" placeholder="00" inputmode="numeric">
+            <input type="number" id="c" placeholder="40" inputmode="numeric">
         </div>
     </div>
 
@@ -124,16 +130,16 @@
             <span class="tag" id="safe-val">-</span>
         </div>
         <div class="status-row">
-            <span class="status-label" style="color: #64748b;">Acceptable</span>
+            <span class="status-label" style="color: #64748b;">Comfort Fit</span>
             <span class="tag" id="acc-val">-</span>
         </div>
         <div class="status-row">
-            <span class="status-label" style="color: #f59e0b;">Risky</span>
+            <span class="status-label" style="color: #f59e0b;">Tight Fit</span>
             <span class="tag" id="risk-val">-</span>
         </div>
     </div>
 
-    <div class="footer-note">Private · Stored locally · No tracking</div>
+    <div class="footer-note">Private · Local Storage · V10.0</div>
 
     <script src="popup.js"></script>
 </body>
